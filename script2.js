@@ -1,12 +1,23 @@
-function displayTime(){
-    var dateTime = new Date();
-    var hrs = dateTime.getHours();
-    var min = dateTime.getMinutes();
-    var sec = dateTime.getSeconds();
-    var session = document.getElementById('session');
+// Modern 24-Hour Digital Clock
+function displayTime() {
+    const dateTime = new Date();
+    const hrs = dateTime.getHours();
+    const min = dateTime.getMinutes();
+    const sec = dateTime.getSeconds();
 
-    document.getElementById('hours').innerHTML = hrs;
-    document.getElementById('minutes').innerHTML = min;
-    document.getElementById('seconds').innerHTML = sec;
+    // Add zero padding for single digits
+    const formattedHrs = hrs.toString().padStart(2, '0');
+    const formattedMin = min.toString().padStart(2, '0');
+    const formattedSec = sec.toString().padStart(2, '0');
+
+    // Update display
+    document.getElementById('hours').textContent = formattedHrs;
+    document.getElementById('minutes').textContent = formattedMin;
+    document.getElementById('seconds').textContent = formattedSec;
 }
-setInterval(displayTime, 10);
+
+// Initialize clock
+displayTime();
+
+// Update every second with more accurate timing
+setInterval(displayTime, 1000);
