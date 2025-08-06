@@ -2,15 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="edge">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="author" content="IzaacCoding36">
-    <meta name="viewport" content="width=device-width, initial-scale= 1.0">
-    <meta name="description" content="This site features a personalized digital clock.">
-    <meta name="keywords" content="HTML, CSS, JavaScript, Clock, Digital.">
-    <link rel="shortcut icon" type="Image/jpg" href="img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="This site features a personalized digital clock with modern design and customizable settings.">
+    <meta name="keywords" content="HTML, CSS, JavaScript, Clock, Digital, Modern, Purple, Neon.">
+    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
     <link rel="stylesheet" href="style.css">
     <title>Neo Digital Clock</title>
-    <link rel="stylesheet" href="style.css">
     <script>
     window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
     </script>
@@ -19,22 +18,29 @@
     window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
     </script>
     <script defer src="/_vercel/insights/script.js"></script>
-    <base href="index.html">
     <script src="script.js" defer></script>
 </head>
 <body>
-  <center>
-    <div class="container">
-        <button type="button" class="button"><a href="PT-br_off.html">Language: English</a></button>
-        <button type="button" class="button"><a href="eng_on.html">24 Hours mode: OFF</a></button>
+    <main class="container">
+        <div class="controls">
+            <button type="button" class="button">
+                <a href="PT-br_off.html" aria-label="Switch to Portuguese language">Language: English</a>
+            </button>
+            <button type="button" class="button">
+                <a href="eng_on.html" aria-label="Switch to 24-hour format">24 Hours mode: OFF</a>
+            </button>
+        </div>
+        
         <h1 class="title">Neo Digital Clock</h1>
-        <span id="hours">00</span>
-        <span>:</span>
-        <span id="minutes">00</span>
-        <span>:</span>
-        <span id="seconds">00</span>
-        <span id="session">AM</span>
-    </div>
-  </center>
+        
+        <div class="clock-display" role="timer" aria-live="polite" aria-label="Current time">
+            <span class="clock-digit" id="hours" aria-label="Hours">00</span>
+            <span class="clock-separator">:</span>
+            <span class="clock-digit" id="minutes" aria-label="Minutes">00</span>
+            <span class="clock-separator">:</span>
+            <span class="clock-digit" id="seconds" aria-label="Seconds">00</span>
+            <span class="session" id="session" aria-label="AM or PM">AM</span>
+        </div>
+    </main>
 </body>
 </html>

@@ -1,66 +1,256 @@
-html {margin: 0;
-      padding: 0;
-      max-height: 100%;
-      max-width: 100%;
-      display: flex;
-      background: black;
-      background-color: black;
-      background-image: url(img/Background.png);
-      cursor: default;}
-
-@keyframes glow { 0% {box-shadow: 0 0 5px purple, 0 0 15px purple, 0 0 30px purple;}
-                  50% {box-shadow: 0 0 5px magenta, 0 0 15px magenta, 0 0 30px magenta;}
-                  100% {box-shadow: 0 0 5px purple, 0 0 15px purple, 0 0 30px purple;}
+/* CSS Custom Properties for Color Palette */
+:root {
+  --primary-purple: #800080;
+  --primary-magenta: #FF00FF;
+  --primary-cyan: #00FFFF;
+  --bg-black: #000000;
+  --text-white: #ffffff;
+  --container-bg: rgba(0, 0, 0, 0.6);
+  --glow-purple: rgba(128, 0, 128, 0.8);
+  --glow-magenta: rgba(255, 0, 255, 0.8);
+  --glow-cyan: rgba(0, 255, 255, 0.8);
 }
 
-.container {font-family: "Arial", Helvetica, sans-serif;
-            padding: 50px;
-            color: white;
-            font-weight: bold;
-            position: absolute;
-            top: 40%;
-            right: 50%;
-            transform: translate(50%, -50%);
-            font-size: 50px;
-            white-space: nowrap;
-            background-color: #0000009a;
-            border-radius: 50px;
-            border: 2px outset magenta;
-            box-shadow: 0px 0px 30px purple;
-            text-shadow: 0px 5px 20px purple;
-            animation-name: glow;
-            animation-delay: 1s;
-            animation-duration: 5s;
-            animation-iteration-count: infinite;}
-
-body {margin: 0; padding: 0; background-color: black;}
-
-.button {position: relative; top: -50px;
-         background-color: black;
-         padding: 10px;
-         color: white;
-         border-radius: 50px;
-         border: outset 2px magenta;
-         box-shadow: 0px 0px 5px magenta;
-         transition: border 0.3s, box-shadow 0.3s;}
-
-.button:hover {border: outset 2px cyan;
-               cursor: pointer;
-               box-shadow: 0px 0px 5px cyan;
-               transition: border 0.3s, box-shadow 0.3s;}
-
-a {text-decoration: none; color: white;}
-
-.title {color: white; font-size: 20px; position: relative; top: -50px;}
-
-@media screen and (min-width: 900px){
-  .container {font-size: 150px; padding: 20px;}
-  .button {padding: 10px;}
-  .title {font-size: 30px;}
+/* Modern CSS Reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-@media screen and (max-width: 900px){
-  .container {font-size: 45px; padding: 35px;}
-  .button {padding: 10px;}
-  .title {font-size: 30px;}
+html {
+  height: 100%;
+  font-size: 16px;
+}
+
+body {
+  min-height: 100vh;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  background: var(--bg-black);
+  background-image: url(img/Background.png);
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  color: var(--text-white);
+  cursor: default;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+/* Modern Glow Animation */
+@keyframes glow {
+  0% {
+    box-shadow: 
+      0 0 5px var(--glow-purple),
+      0 0 15px var(--glow-purple),
+      0 0 30px var(--glow-purple),
+      0 0 50px var(--glow-purple);
+  }
+  50% {
+    box-shadow: 
+      0 0 5px var(--glow-magenta),
+      0 0 15px var(--glow-magenta),
+      0 0 30px var(--glow-magenta),
+      0 0 50px var(--glow-magenta);
+  }
+  100% {
+    box-shadow: 
+      0 0 5px var(--glow-purple),
+      0 0 15px var(--glow-purple),
+      0 0 30px var(--glow-purple),
+      0 0 50px var(--glow-purple);
+  }
+}
+
+/* Main Container with Modern Layout */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  padding: 3rem 2rem;
+  background: var(--container-bg);
+  backdrop-filter: blur(10px);
+  border-radius: 2rem;
+  border: 2px solid var(--primary-magenta);
+  box-shadow: 
+    0 0 30px var(--glow-purple),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  animation: glow 5s ease-in-out infinite;
+  animation-delay: 1s;
+  max-width: 90vw;
+  text-align: center;
+}
+
+/* Controls Section */
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+/* Modern Button Styling */
+.button {
+  background: linear-gradient(135deg, var(--bg-black), rgba(0, 0, 0, 0.8));
+  border: 2px solid var(--primary-magenta);
+  border-radius: 2rem;
+  padding: 0.75rem 1.5rem;
+  color: var(--text-white);
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: left 0.5s;
+}
+
+.button:hover {
+  border-color: var(--primary-cyan);
+  box-shadow: 
+    0 0 20px var(--glow-cyan),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+.button:hover::before {
+  left: 100%;
+}
+
+.button:active {
+  transform: translateY(0);
+}
+
+.button a {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+/* Title Styling */
+.title {
+  font-size: clamp(1.2rem, 4vw, 2rem);
+  font-weight: 600;
+  color: var(--text-white);
+  text-shadow: 0 2px 10px var(--glow-purple);
+  margin: 0;
+}
+
+/* Clock Display */
+.clock-display {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2em;
+  font-size: clamp(2.5rem, 12vw, 8rem);
+  font-weight: 700;
+  font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+  text-shadow: 
+    0 0 10px var(--glow-purple),
+    0 2px 20px rgba(128, 0, 128, 0.5);
+  line-height: 1;
+}
+
+.clock-digit {
+  min-width: 1.2em;
+  text-align: center;
+  display: inline-block;
+}
+
+.clock-separator {
+  opacity: 0.8;
+  animation: blink 2s ease-in-out infinite;
+}
+
+.session {
+  font-size: 0.4em;
+  margin-left: 0.3em;
+  vertical-align: top;
+  opacity: 0.9;
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 0.8; }
+  51%, 100% { opacity: 0.3; }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    padding: 2rem 1.5rem;
+    gap: 1.5rem;
+    border-radius: 1.5rem;
+  }
+  
+  .controls {
+    gap: 0.75rem;
+  }
+  
+  .button {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 0.5rem;
+  }
+  
+  .container {
+    padding: 1.5rem 1rem;
+    gap: 1rem;
+    border-radius: 1rem;
+  }
+  
+  .controls {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .button {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .container {
+    border-width: 3px;
+    background: rgba(0, 0, 0, 0.9);
+  }
+  
+  .button {
+    border-width: 3px;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .container {
+    animation: none;
+  }
+  
+  .button {
+    transition: none;
+  }
+  
+  .clock-separator {
+    animation: none;
+    opacity: 0.8;
+  }
 }
